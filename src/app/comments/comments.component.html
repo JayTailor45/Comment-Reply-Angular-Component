@@ -1,0 +1,22 @@
+<div class="comments">
+  <h3 class="comments-title">
+    Comments
+  </h3>
+  <div class="comment-form-title">
+    Write Comment
+  </div>
+  <app-comment-form submitLabel="Write"(handleSubmit)="addComment({text: $event, parentId: null})"></app-comment-form>
+  <div class="comments-container">
+    <app-comment
+      *ngFor="let comment of getRootComments()"
+      [comment]="comment"
+      [currentUserId]="currentUserId"
+      [replies]="getReplies(comment.id)"
+      [activeComment]="activeComment"
+      (setActiveComment)="setActiveComment($event)"
+      (addComment)="addComment($event)"
+      (updateComment)="updateComment($event)"
+      (deleteComment)="deleteComment($event)"
+    ></app-comment>
+  </div>
+</div>
